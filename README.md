@@ -38,13 +38,14 @@ HEAVILY inspired by [eankeen/tails](https://github.com/eankeen/tails)
   - typescript! typescript everywhere!
   - deno on backend? deno seems pretty fun ngl
   - graphql because... idk, just google "why is graphql good"
-  - core server: rust? use traits to define spec for plugins??
+  - core plugin server: rust? use traits to define spec for plugins??
     - try to use typescript for this because more developers are comfortable with this
     - possibly create a package manager for plugins so devs can publish/plug-n-play them
+  - grpc mmmm. where does it all fit in tho...
 - frontend should be last priority (this is more of a note to self so i dont get carried away) BUT
   - next?
   - swr?
   - styled?
 - keep consistent linting/formatting everywhere... possibly use what tails did; create an eslint config for project-wide use
-- probably pnpm + pnpm workspaces
+- probably pnpm + pnpm workspaces for node stuff
 - license! uhh this is gonna be awkward... probably something restrictive here. if this turns out to be actually useful i dont want people putting my (and potential future contributors') code out there without acknowledgement or whatever
