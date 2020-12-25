@@ -4,6 +4,54 @@ an all-in-one self-hosted productivity suite for programmers!
 
 HEAVILY inspired by [eankeen/tails](https://github.com/eankeen/tails)
 
+# 12/25 update
+
+here is a more concise and thought out version of what this actually is
+
+now that i read this, this is a lot to do :/
+
+spot is a(n):
+
+- online productivity suite for programmers
+  - it should have a wordpress-like login system (on the first start, create credentials, and use them forever)
+    - email/password: forgot password email should be available
+  - when you log in, it should show you a dashboard in which you can import repositories from git hosting sites. these are at the core of spot. it can't function if you don't want to use an online source control tool
+  - when you import a repository
+    - the dashboard should be able to give you basic metadata about it
+      - size in kB
+      - timestamp last updated
+      - stars
+    - you should be able to categorize a repository into different folders
+  - say you want to run and edit a node project. this is what you need to do:
+    - either import it from version control or generate with a template. since i already explained imports from version control, let's pretend this is from a template
+    - say you have already created a boilerplate repository and it's hosted on github. you've put your ESLint config, Prettier config, and EditorConfig on it, along with some github actions
+    - when you hit "generate from template" you'll be shown an embedded view of the dashboard but it is filtered to the `template` tag, which gets added once you configure a repository as a template
+    - in that template repository, you've created a file called `spot.toml` at its root. it looks like this:
+
+```toml
+template = true
+language = "node"
+
+[config.eslint]
+location = "/.eslintrc"
+
+[config.prettier]
+location = "/.prettierrc"
+
+[bootstrap]
+exclude = ["/LICENSE"]
+```
+
+    - spot reads this file and recognizes the `prettier` key because it is a built in template **plugin**
+    - spot warns the user that a key named `eslint` was found but it wasn't able to do anything with it because it doesn't have the appropriate plugin
+    - spot prompts the user to install this via the `store` page, which lists packages on the npm registry prefixed with `spot-plugin-*`. the user may choose to install this
+    - spot walks through each known key in the template config and runs the plugin code associated with it. in this case, the plugin allows you to step through each config and mark a check box for each configuration you need. this is easily implemented because `check-box` style plugins are one of the valid plugin types that easily integrate with spot
+    - after choosing the appropriate configurations for the `config` keys, spot looks into the `language` and `bootstrap` keys. if the `language` key exists and is valid (currently, node should be supported), it will trigger a series of actions associated with that language. in this case, it should read code from the built-in node plugin which will basically prompt you through scripts and dependencies, similar to the prompts for `prettier`
+    - now that all the user configuration is complete, `spot` is ready to bootstrap the project. it starts by directly cloning the project (or downloading the tarball from source control, if available), removing the `.git` folder if it exists. then, it removes all files or directories specified by the `exclude` key under `bootstrap`. finally, it will remove all the files configured by plugins and rewrite them based on user-entered config. (spot also deletes all template-related information from the new repository)
+    - once the project is ready for writing, the user opens (**FIXME**) some sort of connection to the server and begins editing. the web dashboard, since reading that the language is `node`, reads scripts from `package.json` and displays them in a list. say, for example, i'm building a `next.js` web app, and i'd like to view my development server. the user can simply click on the appropriate script and it will launch (containerized?) on the server. therefore, all development and writing of files simply takes place on the server
+
+# initial thoughts
+
 ## design goals
 
 - ability to import dotfiles (lint, format, etc config) from selected repositories
@@ -52,6 +100,12 @@ HEAVILY inspired by [eankeen/tails](https://github.com/eankeen/tails)
 - license! uhh this is gonna be awkward... probably something restrictive here. if this turns out to be actually useful i dont want people putting my (and potential future contributors') code out there without acknowledgement or whatever
 
 ## architecture
+
+### updates
+
+- no core server needed, the node server should route all of the grpc endpoints i think??
+
+### initial thoughts
 
 server + client; server imports github/misc git projects & calculates metadata server-side
 

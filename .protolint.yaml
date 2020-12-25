@@ -1,0 +1,42 @@
+# Lint directives.
+lint:
+  rules:
+    all_default: true
+
+    # The specific linters to add.
+    add:
+      - FIELD_NAMES_LOWER_SNAKE_CASE
+      - MESSAGE_NAMES_UPPER_CAMEL_CASE
+      - MAX_LINE_LENGTH
+      - INDENT
+      - SERVICE_NAMES_END_WITH
+      - FIELD_NAMES_EXCLUDE_PREPOSITIONS
+      - MESSAGE_NAMES_EXCLUDE_PREPOSITIONS
+      - FILE_NAMES_LOWER_SNAKE_CASE
+      - IMPORTS_SORTED
+      - PACKAGE_NAME_LOWER_CASE
+      - ORDER
+      - MESSAGES_HAVE_COMMENT
+      - SERVICES_HAVE_COMMENT
+      - RPCS_HAVE_COMMENT
+      - FIELDS_HAVE_COMMENT
+      - PROTO3_FIELDS_AVOID_REQUIRED
+      - PROTO3_GROUPS_AVOID
+      - REPEATED_FIELD_NAMES_PLURALIZED
+      - ENUMS_HAVE_COMMENT
+      - ENUM_FIELDS_HAVE_COMMENT
+      - SYNTAX_CONSISTENT
+
+    # The specific linters to remove.
+    remove:
+      - RPC_NAMES_UPPER_CAMEL_CASE
+
+    # INDENT rule option.
+    indent:
+      # Available styles are 4(4-spaces), 2(2-spaces) or tab.
+      style: tab
+      # Available newlines are "\n", "\r", or "\r\n".
+      newline: "\n"
+      # Specifies if it should stop considering and inserting new lines at the appropriate positions
+      # when the inner elements are on the same line. Default is false.
+      not_insert_newline: true
