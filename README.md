@@ -40,15 +40,16 @@ location = "/.prettierrc"
 
 [bootstrap]
 exclude = ["/LICENSE"]
+
 ```
 
-    - spot reads this file and recognizes the `prettier` key because it is a built in template **plugin**
-    - spot warns the user that a key named `eslint` was found but it wasn't able to do anything with it because it doesn't have the appropriate plugin
-    - spot prompts the user to install this via the `store` page, which lists packages on the npm registry prefixed with `spot-plugin-*`. the user may choose to install this
-    - spot walks through each known key in the template config and runs the plugin code associated with it. in this case, the plugin allows you to step through each config and mark a check box for each configuration you need. this is easily implemented because `check-box` style plugins are one of the valid plugin types that easily integrate with spot
-    - after choosing the appropriate configurations for the `config` keys, spot looks into the `language` and `bootstrap` keys. if the `language` key exists and is valid (currently, node should be supported), it will trigger a series of actions associated with that language. in this case, it should read code from the built-in node plugin which will basically prompt you through scripts and dependencies, similar to the prompts for `prettier`
-    - now that all the user configuration is complete, `spot` is ready to bootstrap the project. it starts by directly cloning the project (or downloading the tarball from source control, if available), removing the `.git` folder if it exists. then, it removes all files or directories specified by the `exclude` key under `bootstrap`. finally, it will remove all the files configured by plugins and rewrite them based on user-entered config. (spot also deletes all template-related information from the new repository)
-    - once the project is ready for writing, the user opens (**FIXME**) some sort of connection to the server and begins editing. the web dashboard, since reading that the language is `node`, reads scripts from `package.json` and displays them in a list. say, for example, i'm building a `next.js` web app, and i'd like to view my development server. the user can simply click on the appropriate script and it will launch (containerized?) on the server. therefore, all development and writing of files simply takes place on the server
+- spot reads this file and recognizes the `prettier` key because it is a built in template **plugin**
+- spot warns the user that a key named `eslint` was found but it wasn't able to do anything with it because it doesn't have the appropriate plugin
+- spot prompts the user to install this via the `store` page, which lists packages on the npm registry prefixed with `spot-plugin-*`. the user may choose to install this
+- spot walks through each known key in the template config and runs the plugin code associated with it. in this case, the plugin allows you to step through each config and mark a check box for each configuration you need. this is easily implemented because `check-box` style plugins are one of the valid plugin types that easily integrate with spot
+- after choosing the appropriate configurations for the `config` keys, spot looks into the `language` and `bootstrap` keys. if the `language` key exists and is valid (currently, node should be supported), it will trigger a series of actions associated with that language. in this case, it should read code from the built-in node plugin which will basically prompt you through scripts and dependencies, similar to the prompts for `prettier`
+- now that all the user configuration is complete, `spot` is ready to bootstrap the project. it starts by directly cloning the project (or downloading the tarball from source control, if available), removing the `.git` folder if it exists. then, it removes all files or directories specified by the `exclude` key under `bootstrap`. finally, it will remove all the files configured by plugins and rewrite them based on user-entered config. (spot also deletes all template-related information from the new repository)
+- once the project is ready for writing, the user opens (**FIXME**) some sort of connection to the server and begins editing. the web dashboard, since reading that the language is `node`, reads scripts from `package.json` and displays them in a list. say, for example, i'm building a `next.js` web app, and i'd like to view my development server. the user can simply click on the appropriate script and it will launch (containerized?) on the server. therefore, all development and writing of files simply takes place on the server
 
 # initial thoughts
 
