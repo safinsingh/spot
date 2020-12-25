@@ -1,0 +1,7 @@
+# allow:
+
+scripts:
+  dev:
+    cmd: deno run --unstable mod.ts
+    watch: true
+    # imap: imap.json

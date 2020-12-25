@@ -1,0 +1,23 @@
+syntax = "proto3";
+package spot.projects.v1;
+
+import "google/protobuf/empty.proto";
+
+service ProjectService {
+	// get metadata (generated server-side, no setter here)
+	rpc GetProjectMeta(GetProjectMetaRequest) returns (ProjectMeta) {}
+}
+
+message GetProjectMetaRequest {
+	string name = 1;
+}
+
+message ProjectMeta {
+	string url = 1;
+
+	// unix timestamp
+	uint64 last_updated = 2;
+
+	// Size in kB
+	double size = 3;
+}
