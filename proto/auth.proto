@@ -1,0 +1,31 @@
+syntax = "proto3";
+package spot.auth;
+
+import "google/protobuf/wrappers.proto";
+
+service AuthService {
+	// Is initial auth request? if so, create credentials
+	rpc IsInitialAuthRequest(AuthRequest) returns (google.protobuf.BoolValue) {}
+
+	// Authentication after initial setup
+	rpc AuthenticateRequest(AuthRequest) returns (AuthResponse) {}
+}
+
+message AuthRequest {
+	string email = 1;
+	string password = 2;
+}
+
+message AuthResponse {
+	// true = success, false = failure
+	bool status = 1;
+
+	// nullable (must be present on success)
+	optional User user = 2;
+}
+
+message User {
+	string name = 1;
+	string email = 2;
+	// ...
+}
