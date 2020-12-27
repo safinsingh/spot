@@ -4,6 +4,22 @@ an all-in-one self-hosted productivity suite for programmers!
 
 HEAVILY inspired by [eankeen/tails](https://github.com/eankeen/tails)
 
+# 12/26 update
+
+yay! a lot of bootstrapping is done
+
+- eslint/prettier/that stuff
+- shared grpc abstraction library
+- simplified auth protobuf
+- finished up business logic for auth microservice
+
+todo
+
+- create db microservice
+- set up docker-compose
+- finish up auth microservice
+- create well-abstracted testing grpc client
+
 # 12/25 update
 
 here is a more concise and thought out version of what this actually is
