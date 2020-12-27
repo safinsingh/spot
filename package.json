@@ -1,0 +1,5 @@
+{
+	"devDependencies": {
+		"eslint-config-spot": "link:eslint-config-spot"
+	}
+}

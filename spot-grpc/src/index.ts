@@ -12,7 +12,7 @@ export const protoMap: {
 		...acc,
 		[cur]: {
 			port: BASE_PORT_NUM + idx,
-			path: join(__dirname, `../../proto/${cur}.proto`)
+			path: join(__dirname, `../../spot-proto/${cur}.proto`)
 		}
 	}
 }, {})
