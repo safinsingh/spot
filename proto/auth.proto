@@ -4,11 +4,8 @@ package spot.auth;
 import "google/protobuf/wrappers.proto";
 
 service AuthService {
-	// Is initial auth request? if so, create credentials
-	rpc IsInitialAuthRequest(AuthRequest) returns (google.protobuf.BoolValue) {}
-
 	// Authentication after initial setup
-	rpc AuthenticateRequest(AuthRequest) returns (AuthResponse) {}
+	rpc Authenticate(AuthRequest) returns (AuthResponse) {}
 }
 
 message AuthRequest {

@@ -6,7 +6,7 @@
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
-		"dev": "ts-node-dev index.ts",
+		"dev": "ts-node-dev src/index.ts",
 		"fmt": "prettier --write '**/*.{js,ts,tsx,yml,scss,json}'",
 		"fmt:ci": "prettier --check '**/*.{js,ts,tsx,yml,scss,json}'",
 		"lint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
@@ -19,8 +19,8 @@
 	"author": "Safin Singh",
 	"license": "AGPL-3.0",
 	"dependencies": {
-		"@grpc/proto-loader": "^0.5.5",
-		"grpc": "^1.24.4"
+		"@grpc/grpc-js": "^1.2.2",
+		"@grpc/proto-loader": "^0.5.5"
 	},
 	"devDependencies": {
 		"@types/node": "^14.14.16",

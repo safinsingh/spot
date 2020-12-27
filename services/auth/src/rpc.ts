@@ -1,8 +1,8 @@
-function isInitialAuth(req) {
-	return true
-}
+import { sendUnaryData, ServerUnaryCall } from '@grpc/grpc-js'
 
-function authenticate(req) {
+import type { AuthRequest, AuthResponse } from './types'
+
+const authenticate = (req: AuthRequest): AuthResponse => {
 	return {
 		status: true,
 		user: {
@@ -12,12 +12,11 @@ function authenticate(req) {
 	}
 }
 
-const isInitialAuthRequest = (call, callback) => {
-	callback(null, isInitialAuth(call.request))
-}
-
-const authenticateRequest = (call, callback) => {
+const authenticateRequest = (
+	call: ServerUnaryCall<AuthRequest, AuthResponse>,
+	callback: sendUnaryData<AuthResponse>
+) => {
 	callback(null, authenticate(call.request))
 }
 
-export { isInitialAuthRequest, authenticateRequest }
+export { authenticateRequest }
