@@ -12,6 +12,7 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"declaration": true,
+		"allowSyntheticDefaultImports": true
 	},
 	"compileOnSave": true,
 	"include": ["**/*.ts"],
