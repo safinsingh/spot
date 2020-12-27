@@ -50,4 +50,5 @@ jobs:
       - uses: extractions/setup-just@v1
         with:
           just-version: '*'
+      - run: just install-ci
       - run: just lint-ci
