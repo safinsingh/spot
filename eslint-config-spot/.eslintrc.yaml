@@ -1,0 +1,32 @@
+env:
+  browser: false
+  es2021: true
+root: true
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 2021
+  ecmaFeatures:
+    modules: true
+  sourceType: module
+  project: './tsconfig.json'
+  createDefaultProgram: true
+extends:
+  - plugin:import/typescript
+  - plugin:prettier/recommended
+plugins:
+  - '@typescript-eslint'
+  - simple-import-sort
+  - prettier
+rules:
+  sort-imports: 'off'
+  import/order: 'off'
+  simple-import-sort/imports: error
+  import/extensions: 0
+settings:
+  import/parsers:
+    babel-eslint:
+      - '.ts'
+      - '.tsx'
+  import/resolver:
+    typescript:
+      alwaysTryTypes: true

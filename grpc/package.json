@@ -1,0 +1,44 @@
+{
+	"name": "spot-grpc",
+	"version": "0.1.0",
+	"description": "eslint config for spot monorepo",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"preinstall": "npx only-allow pnpm",
+		"dev": "ts-node-dev index.ts",
+		"fmt": "prettier --write '**/*.{js,ts,tsx,yml,scss,json}'",
+		"fmt:ci": "prettier --check '**/*.{js,ts,tsx,yml,scss,json}'",
+		"lint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
+		"lint:ci": "eslint '**/*.{js,ts,tsx}' --quiet",
+		"build": "tsc && rollup -c"
+	},
+	"keywords": [
+		"eslint"
+	],
+	"author": "Safin Singh",
+	"license": "AGPL-3.0",
+	"dependencies": {
+		"@grpc/proto-loader": "^0.5.5",
+		"grpc": "^1.24.4"
+	},
+	"devDependencies": {
+		"@rollup/plugin-typescript": "^8.1.0",
+		"@types/node": "^14.14.16",
+		"@typescript-eslint/eslint-plugin": "^4.11.0",
+		"@typescript-eslint/parser": "^4.11.0",
+		"eslint": "^7.16.0",
+		"eslint-config-prettier": "^7.1.0",
+		"eslint-config-spot": "file:../eslint-config-spot",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-prettier": "^3.3.0",
+		"eslint-plugin-simple-import-sort": "^7.0.0",
+		"prettier": "^2.2.1",
+		"rollup": "^2.35.1",
+		"rollup-plugin-cleaner": "^1.0.0",
+		"rollup-plugin-dts": "^2.0.1",
+		"ts-node-dev": "^1.1.1",
+		"tslib": "^2.0.3",
+		"typescript": "^4.1.3"
+	}
+}

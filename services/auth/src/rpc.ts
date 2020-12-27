@@ -20,4 +20,4 @@ const authenticateRequest = (call, callback) => {
 	callback(null, authenticate(call.request))
 }
 
-export {isInitialAuthRequest, authenticateRequest}
+export { isInitialAuthRequest, authenticateRequest }
