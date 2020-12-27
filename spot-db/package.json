@@ -1,0 +1,32 @@
+{
+	"name": "spot-db",
+	"version": "0.1.0",
+	"description": "database microservice for spot",
+	"main": "index.js",
+	"scripts": {
+		"preinstall": "npx only-allow pnpm",
+		"dev": "ts-node-dev src/index.ts",
+		"fmt": "prettier --write 'src/**/*.{js,ts,tsx,yml,scss,json}'",
+		"fmt:ci": "prettier --check 'src/**/*.{js,ts,tsx,yml,scss,json}'",
+		"lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+		"lint:ci": "eslint 'src/**/*.{js,ts,tsx}' --quiet"
+	},
+	"keywords": [
+		"db"
+	],
+	"author": "Safin Singh",
+	"license": "AGPL-3.0",
+	"dependencies": {
+		"@grpc/proto-loader": "^0.5.5",
+		"@grpc/grpc-js": "^1.2.2",
+		"spot-grpc": "workspace:^0.1.0"
+	},
+	"devDependencies": {
+		"@types/node": "^14.14.16",
+		"prettier": "^2.2.1",
+		"ts-node-dev": "^1.1.1",
+		"typescript": "^4.1.3",
+		"eslint": "^7.16.0",
+		"eslint-config-spot": "workspace:^0.1.0"
+	}
+}

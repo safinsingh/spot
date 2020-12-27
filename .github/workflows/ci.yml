@@ -51,4 +51,4 @@ jobs:
         with:
           just-version: '*'
       - run: just install-ci
-      - run: just lint-ci
+      # - run: just lint-ci

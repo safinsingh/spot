@@ -1,0 +1,9 @@
+syntax = "proto3";
+package spot.common;
+
+message FaillableBoolean {
+	bool status = 1;
+	optional string error = 2;
+
+	optional bool response = 3;
+}

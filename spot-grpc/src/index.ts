@@ -2,8 +2,8 @@ import * as grpc from '@grpc/grpc-js'
 import * as protoLoader from '@grpc/proto-loader'
 import { join } from 'path'
 
-const protos = ['auth']
-const BASE_PORT_NUM = 5000
+const protos = ['auth', 'db']
+const BASE_PORT_NUM = 5001
 
 export const protoMap: {
 	[key: string]: { path: string; port: number }
@@ -32,3 +32,5 @@ export const loadProto = (service: string): { def: any; port: number } => {
 		def: (protoDescriptor['spot'] as grpc.GrpcObject)[service]
 	}
 }
+
+export * from './proto-types'

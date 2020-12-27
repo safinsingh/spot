@@ -1,8 +1,6 @@
 syntax = "proto3";
 package spot.auth;
 
-import "google/protobuf/wrappers.proto";
-
 service AuthService {
 	// Authentication after initial setup
 	rpc Authenticate(AuthRequest) returns (AuthResponse) {}
@@ -17,12 +15,14 @@ message AuthResponse {
 	// true = success, false = failure
 	bool status = 1;
 
+	// error?
+	optional string error = 2;
+
 	// nullable (must be present on success)
-	optional User user = 2;
+	optional User user = 3;
 }
 
 message User {
-	string name = 1;
-	string email = 2;
+	string email = 1;
 	// ...
 }
