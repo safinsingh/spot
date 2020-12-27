@@ -1,0 +1,2 @@
+hooks:
+  pre-commit: just lint-ci && just fmt-ci

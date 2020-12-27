@@ -1,5 +1,6 @@
 {
 	"devDependencies": {
-		"eslint-config-spot": "link:eslint-config-spot"
+		"eslint-config-spot": "link:eslint-config-spot",
+		"husky": "^4.3.6"
 	}
 }

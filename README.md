@@ -4,7 +4,7 @@ an all-in-one self-hosted productivity suite for programmers!
 
 HEAVILY inspired by [eankeen/tails](https://github.com/eankeen/tails)
 
-# 12/26 update
+## 12/26 update
 
 yay! a lot of bootstrapping is done
 
@@ -20,7 +20,7 @@ todo
 - finish up auth microservice
 - create well-abstracted testing grpc client
 
-# 12/25 update
+## 12/25 update
 
 here is a more concise and thought out version of what this actually is
 
@@ -67,15 +67,15 @@ exclude = ["/LICENSE"]
 - now that all the user configuration is complete, `spot` is ready to bootstrap the project. it starts by directly cloning the project (or downloading the tarball from source control, if available), removing the `.git` folder if it exists. then, it removes all files or directories specified by the `exclude` key under `bootstrap`. finally, it will remove all the files configured by plugins and rewrite them based on user-entered config. (spot also deletes all template-related information from the new repository)
 - once the project is ready for writing, the user opens (**FIXME**) some sort of connection to the server and begins editing. the web dashboard, since reading that the language is `node`, reads scripts from `package.json` and displays them in a list. say, for example, i'm building a `next.js` web app, and i'd like to view my development server. the user can simply click on the appropriate script and it will launch (containerized?) on the server. therefore, all development and writing of files simply takes place on the server
 
-## tech
+### tech
 
 - microservice architechture! microservices to split up:
   - auth
   - db - (should db be separate? only using it to store auth credentials at the moment)
 
-# initial thoughts
+## initial thoughts
 
-## design goals
+### design goals
 
 - ability to import dotfiles (lint, format, etc config) from selected repositories
 - designate repositories as templates (special format for replaceable values)
@@ -128,7 +128,7 @@ exclude = ["/LICENSE"]
 
 - no core server needed, the node server should route all of the grpc endpoints i think??
 
-### initial thoughts
+### more thoughts
 
 server + client; server imports github/misc git projects & calculates metadata server-side
 

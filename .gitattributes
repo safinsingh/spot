@@ -1,0 +1,2 @@
+# always perform lf normalization
+* text=auto eol=lf

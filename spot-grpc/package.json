@@ -7,10 +7,10 @@
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
 		"dev": "ts-node-dev src/index.ts",
-		"fmt": "prettier --write '**/*.{js,ts,tsx,yml,scss,json}'",
-		"fmt:ci": "prettier --check '**/*.{js,ts,tsx,yml,scss,json}'",
-		"lint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
-		"lint:ci": "eslint '**/*.{js,ts,tsx}' --quiet",
+		"fmt": "prettier --write 'src/**/*.{js,ts,tsx,yml,scss,json}'",
+		"fmt:ci": "prettier --check 'src/**/*.{js,ts,tsx,yml,scss,json}'",
+		"lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+		"lint:ci": "eslint 'src/**/*.{js,ts,tsx}' --quiet",
 		"build": "rm -rf dist/* && tsc"
 	},
 	"keywords": [
