@@ -1,2 +1,3 @@
 packages:
   - '*spot*'
+  - '!spot-testing-client'

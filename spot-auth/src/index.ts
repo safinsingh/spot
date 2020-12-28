@@ -12,12 +12,12 @@ Server.addService(def['AuthService'].service, {
 
 // TODO: generate SSL certs
 Server.bindAsync(
-	`127.0.0.1:${port}`,
+	`0.0.0.0:${port}`,
 	grpc.ServerCredentials.createInsecure(),
 	(err, port) => {
 		if (err) console.error(err)
 
-		console.log(`Starting server on: 127.0.0.1:${port}`)
+		console.log(`Starting server on: 0.0.0.0:${port}`)
 		Server.start()
 	}
 )

@@ -14,4 +14,8 @@ type FaillableBoolean = {
 	response?: boolean
 }
 
-export type { AuthRequest, User, AuthResponse, FaillableBoolean }
+type UInt32Value = {
+	value: number
+}
+
+export type { AuthRequest, User, AuthResponse, FaillableBoolean, UInt32Value }

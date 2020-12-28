@@ -34,3 +34,4 @@ export const loadProto = (service: string): { def: any; port: number } => {
 }
 
 export * from './proto-types'
+export * from './errors'

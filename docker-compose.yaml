@@ -6,6 +6,9 @@ services:
       - db
     environment:
       - DATABASE_URL=postgres://user:password@db:5432
+    ports:
+      - '5001:5001'
+      - '5002:5002'
 
   db:
     image: postgres
@@ -14,3 +17,5 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: spot
+    ports: # temporarily
+      - '5432:5432'

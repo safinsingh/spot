@@ -16,7 +16,7 @@ yay! a lot of bootstrapping is done
 todo
 
 - create db microservice
-- set up docker-compose
+- set up docker-compose **(DONE)**
 - finish up auth microservice
 - create well-abstracted testing grpc client
 

@@ -2,13 +2,14 @@ syntax = "proto3";
 package spot.db;
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
 
 import "./auth.proto";
 import "./common.proto";
 
 service DbService {
-	// User table empty?
-	rpc UserTableEmpty(google.protobuf.Empty) returns (spot.common.FaillableBoolean) {}
+	// # of table entries
+	rpc TableEntries(google.protobuf.Empty) returns (google.protobuf.UInt32Value) {}
 
 	// Insert user/password
 	rpc InsertUserRecord(spot.auth.AuthRequest) returns (spot.auth.AuthResponse) {}

@@ -1,7 +1,7 @@
 {
-	"name": "spot-auth",
+	"name": "spot-db",
 	"version": "0.1.0",
-	"description": "authentication microservice for spot",
+	"description": "database microservice for spot",
 	"main": "dist/index.js",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
@@ -14,7 +14,7 @@
 		"start": "node dist/index.js"
 	},
 	"keywords": [
-		"auth"
+		"db"
 	],
 	"author": "Safin Singh",
 	"license": "AGPL-3.0",

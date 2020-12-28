@@ -2,28 +2,31 @@ import * as grpc from '@grpc/grpc-js'
 import { loadProto } from 'spot-grpc'
 
 import {
+	conn,
 	insertUserRecordRequest,
-	userPassPairExistsRequest,
-	userTableEmptyRequest
+	tableEntryRequest,
+	userPassPairExistsRequest
 } from './rpc'
 
 const { def, port } = loadProto('db')
 
 const Server = new grpc.Server()
 Server.addService(def['DbService'].service, {
-	usertableempty: userTableEmptyRequest,
-	insertuserrecord: insertUserRecordRequest,
-	userpasspairexists: userPassPairExistsRequest
+	tableEntries: tableEntryRequest,
+	insertUserRecord: insertUserRecordRequest,
+	userPassPairExists: userPassPairExistsRequest
 })
 
 // TODO: generate SSL certs
-Server.bindAsync(
-	`127.0.0.1:${port}`,
-	grpc.ServerCredentials.createInsecure(),
-	(err, port) => {
-		if (err) console.error(err)
+conn.connect().then(() => {
+	Server.bindAsync(
+		`0.0.0.0:${port}`,
+		grpc.ServerCredentials.createInsecure(),
+		(err, port) => {
+			if (err) console.error(err)
 
-		console.log(`Starting server on: 127.0.0.1:${port}`)
-		Server.start()
-	}
-)
+			console.log(`Starting server on: 0.0.0.0:${port}`)
+			Server.start()
+		}
+	)
+})
