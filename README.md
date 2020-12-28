@@ -20,6 +20,7 @@ todo:
   - abstract auth hooks
 - figure out how to write a proper dockerfile without installing dependencies every time
 - publish docker image?
+- actually separate db & auth microservices instead using a pnpm recursive runner
 
 ## 12/26 update
 

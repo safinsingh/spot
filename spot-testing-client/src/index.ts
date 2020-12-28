@@ -1,5 +1,6 @@
 import * as grpc from '@grpc/grpc-js'
-import { FaillableBoolean, loadProto } from 'spot-grpc'
+import { AuthResponse, loadProto } from 'spot-grpc'
+import { promisify } from 'util'
 
 const { def, port } = loadProto('auth')
 
@@ -17,18 +18,22 @@ stub.waitForReady(deadline, (err?: Error) => {
 	} else {
 		console.log(`Stub is ready for connections to: 0.0.0.0:${port}`)
 		onReady()
+			.then((res) => console.log(res))
+			.catch((e) => console.error(e))
 	}
 })
 
-const onReady = () => {
-	stub.authenticate(
-		{
-			user: 'safin',
+const authenticateAsync = promisify(stub.authenticate).bind(stub)
+
+const onReady = async (): Promise<AuthResponse> => {
+	try {
+		const res = await authenticateAsync({
+			email: 'safin@mail',
 			password: 'pass'
-		},
-		(err: Error | null, res: FaillableBoolean) => {
-			if (err) console.error(err)
-			console.log(res)
-		}
-	)
+		})
+
+		return res as AuthResponse
+	} catch (e) {
+		return { status: false, error: e }
+	}
 }

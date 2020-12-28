@@ -39,14 +39,13 @@ const insertUserRecord = async ({
 	password
 }: AuthRequest): Promise<AuthResponse> => {
 	const user = new User(email, password)
-
 	const res = await conn.manager.save(user)
 
 	return {
-		status: res.id === 1,
-		error: res.id === 1 ? '' : DB_USER_ERROR,
+		status: res.getId() === 1,
+		error: res.getId() === 1 ? '' : DB_USER_ERROR,
 		user: {
-			email: res.email
+			email: res.getEmail()
 		}
 	}
 }
@@ -62,7 +61,7 @@ const userPassPairExists = async ({
 	email,
 	password
 }: AuthRequest): Promise<FaillableBoolean> => {
-	const maybeUser = await conn.manager.find(User, {
+	const users = await conn.manager.find(User, {
 		where: {
 			id: 1,
 			email,
@@ -71,12 +70,8 @@ const userPassPairExists = async ({
 	})
 
 	return {
-		status: maybeUser.length === 1 && maybeUser[0].id === 1,
-		error:
-			maybeUser.length === 1 && maybeUser[0].id !== 1
-				? DB_USER_ERROR
-				: '',
-		response: false
+		status: true,
+		response: users.length === 1
 	}
 }
 

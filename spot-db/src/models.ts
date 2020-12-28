@@ -19,4 +19,16 @@ export class User {
 		this.email = email
 		this.password = password
 	}
+
+	getEmail(): string {
+		return this.email
+	}
+
+	getId(): number {
+		return this.id
+	}
+
+	getPassword(): string {
+		return this.password
+	}
 }

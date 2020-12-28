@@ -7,6 +7,7 @@ import {
 	FaillableBoolean,
 	loadProto
 } from 'spot-grpc'
+import { promisify } from 'util'
 
 const { def, port } = loadProto('db')
 
@@ -26,48 +27,36 @@ stub.waitForReady(deadline, (err?: Error) => {
 	}
 })
 
+const tableEntriesAsync = promisify(stub.tableEntries).bind(stub)
+const insertUserRecordAsync = promisify(stub.insertUserRecord).bind(stub)
+const userPassPairExistsAsync = promisify(stub.userPassPairExists).bind(stub)
+
 // Authentication process:
 // 1. Is the number of table rows 0 or 1? No -> Return a failure
 // 2. If number of table rows is 0, create the user and return the response from the stub
 // 3. If the number of table rows is 1, check if the userPassPair exists
 //    If so, just return the response; if not -> return a failure
 const authenticate = async (req: AuthRequest): Promise<AuthResponse> => {
-	let result: AuthResponse = { status: false, error: DB_USER_ERROR }
-	stub.tableEntries({}, (err: Error | null, res: number) => {
-		if (err) result = { status: false, error: err.message }
-		switch (res) {
+	try {
+		const { value } = await tableEntriesAsync({})
+		switch (value) {
 			case 0:
-				stub.insertUserRecord(
-					req,
-					(err2: Error | null, res2: AuthResponse) => {
-						if (err2)
-							result = { status: false, error: err2.message }
-						result = res2
-					}
-				)
+				const a = await insertUserRecordAsync(req)
+				return a
 			case 1:
-				stub.userPassPairExists(
-					req,
-					(err2: Error | null, res2: FaillableBoolean) => {
-						if (err2)
-							result = { status: false, error: err2.message }
-						if (!res2.status)
-							result = { status: res2.status, error: res2.error }
-						if (!res2.response)
-							result = {
-								status: res2.status,
-								error: DB_USER_ERROR
-							}
-						result = {
-							status: true,
-							user: { email: req.email }
-						}
-					}
-				)
-		}
-	})
+				const valid = (await userPassPairExistsAsync(
+					req
+				)) as FaillableBoolean
 
-	return result
+				if (valid.error) throw Error(valid.error)
+				if (!valid.response) throw Error('Invalid credentials!')
+				return { status: true, user: { email: req.email } }
+			default:
+				throw Error(DB_USER_ERROR)
+		}
+	} catch (err: any) {
+		return { status: false, error: err.message ?? err ?? DB_USER_ERROR }
+	}
 }
 
 const authenticateRequest = (
