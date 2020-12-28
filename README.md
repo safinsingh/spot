@@ -15,9 +15,9 @@ todos from yesterday:
 
 todo:
 
-- write a promisifying wrapper for the generic grpc client
 - bootstrap web interface (next + swr + spot-grpc)
   - abstract auth hooks
+  - how will graphql fit into this?
 - figure out how to write a proper dockerfile without installing dependencies every time
 - publish docker image?
 - actually separate db & auth microservices instead using a pnpm recursive runner
