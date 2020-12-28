@@ -23,7 +23,8 @@ lint:
 
 lint-ci:
 	pnpm recursive run lint:ci && \
-	markdownlint *.md
+	markdownlint *.md && \
+	hadolint Dockerfile
 
 fmt:
 	pnpm recursive run fmt
