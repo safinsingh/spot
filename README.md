@@ -1,8 +1,25 @@
-# spot
+# spot ![CI](https://github.com/safinsingh/spot/workflows/CI/badge.svg)
 
 an all-in-one self-hosted productivity suite for programmers!
 
-HEAVILY inspired by [eankeen/tails](https://github.com/eankeen/tails)
+Licensed under [AGPLv3](./LICENSE)
+
+## 12/27 update
+
+todos from yesterday:
+
+- create db microservice **(DONE)**
+- set up docker-compose **(DONE)**
+- finish up auth microservice **(DONE)**
+- create well-abstracted testing grpc client package **(DONE)**
+
+todo:
+
+- write a promisifying wrapper for the generic grpc client
+- bootstrap web interface (next + swr + spot-grpc)
+  - abstract auth hooks
+- figure out how to write a proper dockerfile without installing dependencies every time
+- publish docker image?
 
 ## 12/26 update
 
@@ -16,9 +33,9 @@ yay! a lot of bootstrapping is done
 todo
 
 - create db microservice
-- set up docker-compose **(DONE)**
+- set up docker-compose
 - finish up auth microservice
-- create well-abstracted testing grpc client
+- create well-abstracted testing grpc client package
 
 ## 12/25 update
 
