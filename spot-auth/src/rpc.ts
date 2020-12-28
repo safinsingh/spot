@@ -12,7 +12,7 @@ import { promisify } from 'util'
 const { def, port } = loadProto('db')
 
 const stub = new def['DbService'](
-	`0.0.0.0:${port}`,
+	`db-svc:${port}`,
 	grpc.credentials.createInsecure()
 )
 
@@ -21,9 +21,9 @@ deadline.setSeconds(deadline.getSeconds() + 5)
 
 stub.waitForReady(deadline, (err?: Error) => {
 	if (err) {
-		console.error(`Failed to connect to 0.0.0.0:${port}:\n\t${err.message}`)
+		console.error(`Failed to connect to db-svc:${port}:\n\t${err.message}`)
 	} else {
-		console.log(`Stub is ready for connections to: 0.0.0.0:${port}`)
+		console.log(`Stub is ready for connections to: db-svc:${port}`)
 	}
 })
 

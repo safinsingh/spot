@@ -1,2 +1,17 @@
+# build files
 **/dist/**
 **/node_modules/**
+
+# ci
+/.github
+/.vscode
+/.editorconfig
+/.gitattributes
+/.hadolint.yaml
+/.huskyrc.yaml
+/.markdownlint.yaml
+/.protolint.yaml
+/README.md
+
+# testing
+/spot-testing-client

@@ -1,21 +1,30 @@
 services:
-  svc:
+  auth-svc:
     build: .
     restart: always
     depends_on:
-      - db
+      - db-svc
     environment:
-      - DATABASE_URL=postgres://user:password@db:5432
+      - PACKAGE=spot-auth
     ports:
       - '5001:5001'
-      - '5002:5002'
 
-  db:
+  db-svc:
+    build:
+      context: .
+    restart: always
+    depends_on:
+      - pgsql
+    environment:
+      - DB_URL=postgres://user:password@pgsql:5432/spot
+      - PACKAGE=spot-db
+
+  pgsql:
     image: postgres
     restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: spot
-    ports: # temporarily
+    ports:
       - '5432:5432'

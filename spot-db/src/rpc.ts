@@ -13,14 +13,10 @@ import { User } from './models'
 const connManager = getConnectionManager()
 export const conn = connManager.create({
 	type: 'postgres',
-	host: 'db',
-	username: 'user',
-	database: 'spot',
-	password: 'password',
-	port: 5432,
+	url: process.env.DB_URL,
 	entities: [User],
 	synchronize: true,
-	logging: true
+	logging: false
 })
 
 const tableEntries = async (_req: {}): Promise<UInt32Value> => {

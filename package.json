@@ -1,4 +1,7 @@
 {
+	"scripts": {
+		"preinstall": "npx only-allow pnpm"
+	},
 	"devDependencies": {
 		"eslint": "^7.16.0",
 		"eslint-config-spot": "link:eslint-config-spot",

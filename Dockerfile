@@ -1,23 +1,39 @@
-FROM node:latest
+###############
+# BUILD STAGE #
+###############
+FROM node:current-alpine as build
 
-# Panic on errors caused by piped commands
-SHELL [ "/bin/bash", "-o", "pipefail", "-c" ]
+# Install curl for pnpm & just
+RUN apk --no-cache add curl
 
-# Install `pnpm`
-RUN curl -L https://unpkg.com/@pnpm/self-installer | node
+# Set shell to busybox ash (bash is not present)
+SHELL [ "/bin/ash", "-o", "pipefail", "-c" ]
 
-# Install `just`
-RUN curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to /usr/bin
+# Install pnpm & just
+RUN curl -sL https://unpkg.com/@pnpm/self-installer \
+	| node
+RUN curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh \
+	| ash -s -- --to /usr/bin
 
-# Set working directory
+# Copy over files
 WORKDIR /app
-
-# Copy repository
 COPY . .
 
-# Run build/dep scripts
-RUN just install-ci
+# Build for production
+RUN just install
 RUN just build
 
+# Cleanup
+RUN pnpm prune --production
+RUN find . -type f -name '*.ts' -delete
+
+################
+# DEPLOY STAGE #
+################
+FROM build as deploy
+
+# Copy over built files
+COPY --from=build . .
+
 # Start
-CMD [ "just", "start" ]
+CMD [ "sh", "-c", "node ${PACKAGE}/dist/index.js" ]

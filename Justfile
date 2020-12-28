@@ -1,9 +1,9 @@
 docker:
-	docker-compose build
+	docker-compose build --parallel
 	just docker-run
 
 docker-run:
-	docker-compose up
+	docker-compose up --remove-orphans
 
 start:
 	pnpm recursive run start
