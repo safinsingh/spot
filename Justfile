@@ -1,3 +1,13 @@
+docker:
+	docker-compose build
+	just docker-run
+
+docker-run:
+	docker-compose up
+
+start:
+	pnpm recursive run start
+
 install:
 	pnpm recursive install
 

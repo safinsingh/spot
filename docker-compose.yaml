@@ -1,8 +1,7 @@
 services:
-  auth:
-    image: 'znck:pnpm/latest'
+  svc:
+    build: .
     restart: always
-    command: pnpm i && pnpm start
     depends_on:
       - db
     environment:
@@ -13,5 +12,5 @@ services:
     restart: always
     environment:
       POSTGRES_USER: user
-      POSTGRES_PASSWORD: password # dev password
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: spot

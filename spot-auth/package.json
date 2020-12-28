@@ -2,14 +2,16 @@
 	"name": "spot-auth",
 	"version": "0.1.0",
 	"description": "authentication microservice for spot",
-	"main": "index.js",
+	"main": "dist/index.js",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
 		"dev": "ts-node-dev src/index.ts",
 		"fmt": "prettier --write 'src/**/*.{js,ts,tsx,yml,scss,json}'",
 		"fmt:ci": "prettier --check 'src/**/*.{js,ts,tsx,yml,scss,json}'",
 		"lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
-		"lint:ci": "eslint 'src/**/*.{js,ts,tsx}' --quiet"
+		"lint:ci": "eslint 'src/**/*.{js,ts,tsx}' --quiet",
+		"build": "rm -rf dist/* && tsc",
+		"start": "node dist/index.js"
 	},
 	"keywords": [
 		"auth"
