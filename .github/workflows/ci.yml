@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  'Lint, Format, Build':
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,35 +20,4 @@ jobs:
       - uses: extractions/setup-just@v1
         with:
           just-version: '*'
-      - run: just install-ci
-      - run: just build
-  fmt:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '15'
-      - uses: pnpm/action-setup@v1.2.1
-        with:
-          version: 5.14
-      - uses: extractions/setup-just@v1
-        with:
-          just-version: '*'
-      - run: just install-ci
-      - run: just fmt-ci
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '15'
-      - uses: pnpm/action-setup@v1.2.1
-        with:
-          version: 5.14
-      - uses: extractions/setup-just@v1
-        with:
-          just-version: '*'
-      - run: just install-ci
-      # - run: just lint-ci
+      - run: just ci

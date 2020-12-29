@@ -4,6 +4,7 @@
 		"source.fixAll.markdownlint": true
 	},
 	"files.associations": {
-		".huskyrc": "json"
+		".huskyrc": "json",
+		"Justfile": "makefile"
 	}
 }

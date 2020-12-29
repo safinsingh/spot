@@ -1,33 +1,59 @@
-docker:
-	docker-compose build --parallel
-	just docker-run
+########
+# PROD #
+########
 
-docker-run:
+prod:
+	docker-compose build --parallel
 	docker-compose up --remove-orphans
 
-start:
-	pnpm recursive run start
+###############
+# DEVELOPMENT #
+###############
+
+dev:
+	pnpm recursive run dev
 
 install:
 	pnpm recursive install
 
-install-ci:
-	pnpm recursive install --frozen-lockfile
-
 build:
 	pnpm recursive run build
 
-lint:
-	pnpm recursive run lint && \
-	markdownlint --fix *.md
-
-lint-ci:
-	pnpm recursive run lint:ci && \
-	markdownlint *.md && \
-	hadolint Dockerfile
+fix:
+	just fmt
+	just lint
 
 fmt:
 	pnpm recursive run fmt
 
+lint:
+	pnpm recursive run lint
+	markdownlint --fix *.md
+
+######
+# CI #
+######
+
+ci:
+	just install-ci
+	just build-ci
+	just fmt-ci
+	# just lint-ci
+
+install-ci:
+	pnpm recursive install \
+		--frozen-lockfile --prefer-offline
+
+build-ci:
+	pnpm recursive run build
+	pnpm prune --production
+	find . -type f -maxdepth 4 \
+		-name '*.ts' -delete
+
 fmt-ci:
 	pnpm recursive run fmt:ci
+
+lint-ci:
+	pnpm recursive run lint:ci
+	markdownlint *.md
+	hadolint Dockerfile

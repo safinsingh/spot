@@ -22,6 +22,8 @@ rules:
   import/order: 'off'
   simple-import-sort/imports: error
   import/extensions: 0
+  '@typescript-eslint/indent': 0
+  '@typescript-eslint/semi': 0
 settings:
   import/parsers:
     '@typescript-eslint/parser':

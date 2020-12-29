@@ -1,7 +1,6 @@
 services:
   auth-svc:
     build: .
-    restart: always
     depends_on:
       - db-svc
     environment:
@@ -12,7 +11,6 @@ services:
   db-svc:
     build:
       context: .
-    restart: always
     depends_on:
       - pgsql
     environment:
@@ -21,7 +19,6 @@ services:
 
   pgsql:
     image: postgres
-    restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password

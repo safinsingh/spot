@@ -1,39 +1,29 @@
 ###############
 # BUILD STAGE #
 ###############
-FROM node:current-alpine as build
-
-# Install curl for pnpm & just
-RUN apk --no-cache add curl
-
-# Set shell to busybox ash (bash is not present)
-SHELL [ "/bin/ash", "-o", "pipefail", "-c" ]
+FROM node:latest as build
 
 # Install pnpm & just
 RUN curl -sL https://unpkg.com/@pnpm/self-installer \
-	| node
-RUN curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh \
-	| ash -s -- --to /usr/bin
+	| node && \
+	curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh \
+	| bash -s -- --to /usr/bin
 
 # Copy over files
 WORKDIR /app
 COPY . .
 
 # Build for production
-RUN just install
-RUN just build
-
-# Cleanup
-RUN pnpm prune --production
-RUN find . -type f -name '*.ts' -delete
+RUN just install-ci build-ci
 
 ################
 # DEPLOY STAGE #
 ################
-FROM build as deploy
+FROM node:current-alpine as deploy
 
 # Copy over built files
 COPY --from=build . .
+WORKDIR /app
 
 # Start
 CMD [ "sh", "-c", "node ${PACKAGE}/dist/index.js" ]
