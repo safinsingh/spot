@@ -1,0 +1,14 @@
+sources:
+  - name: 'AuthService'
+    handler:
+      grpc:
+        endpoint: '0.0.0.0:5001'
+        protoFilePath: '../spot-proto/auth.proto'
+        serviceName: 'AuthService'
+        packageName: 'spot.auth'
+    transforms:
+      - namingConvention:
+          fieldNames: camelCase
+
+serve:
+  exampleQuery: queries/*.graphql

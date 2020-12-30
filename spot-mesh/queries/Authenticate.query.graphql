@@ -1,0 +1,9 @@
+mutation Authenticate {
+	authenticate(input: { email: "safin@mail", pass: "pass" }) {
+		status
+		error
+		user {
+			email
+		}
+	}
+}

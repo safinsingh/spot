@@ -11,8 +11,9 @@ import { promisify } from 'util'
 
 const { def, port } = loadProto('db')
 
+const host = process.env.NODE_ENV === 'production' ? 'db-svc' : 'localhost'
 const stub = new def['DbService'](
-	`db-svc:${port}`,
+	`${host}:${port}`,
 	grpc.credentials.createInsecure()
 )
 

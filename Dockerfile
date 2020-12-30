@@ -26,4 +26,4 @@ COPY --from=build . .
 WORKDIR /app
 
 # Start
-CMD [ "sh", "-c", "node ${PACKAGE}/dist/index.js" ]
+CMD [ "sh", "-c", "npm start --prefix ${PACKAGE}" ]

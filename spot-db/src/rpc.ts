@@ -13,7 +13,7 @@ import { User } from './models'
 const connManager = getConnectionManager()
 export const conn = connManager.create({
 	type: 'postgres',
-	url: process.env.DB_URL,
+	url: process.env.DB_URL || 'postgres://user:password@localhost:5432/spot',
 	entities: [User],
 	synchronize: true,
 	logging: false

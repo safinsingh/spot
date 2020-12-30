@@ -4,6 +4,29 @@ an all-in-one self-hosted productivity suite for programmers!
 
 Licensed under [AGPLv3](./LICENSE)
 
+## 12/28 + 12/29 update
+
+todos from 12/27:
+
+- bootstrap web interface (next + swr + spot-grpc) **(PARTIALLY DONE)**
+  - abstract auth hooks
+  - how will graphql fit into this? **(DONE - GRAPHQL MESH!)**
+- figure out how to write a proper dockerfile without installing dependencies every time **(VOID)**
+- publish docker image? **(VOID)**
+- actually separate db & auth microservices instead using a pnpm recursive runner **(DONE)**
+
+todo:
+
+- rewrite schemas and conform to a more uniform error/status/response-style thing
+  - take a closer look at writing schemas for other parts of the application
+  - try to draw out a more complete application diagram
+- write auth hooks for web interface!
+- find a better way to bootstrap development environment/server...
+
+long-term:
+
+- look into ansible for remote deployment
+
 ## 12/27 update
 
 todos from yesterday:

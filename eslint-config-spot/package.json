@@ -5,7 +5,6 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
-		"dev": "ts-node-dev index.ts",
 		"fmt": "prettier --write 'src/**/*.{js,ts,tsx,yml,scss,json}'",
 		"fmt:ci": "prettier --check 'src/**/*.{js,ts,tsx,yml,scss,json}'",
 		"lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",

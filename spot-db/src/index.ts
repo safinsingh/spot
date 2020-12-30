@@ -22,7 +22,7 @@ conn.connect().then(() => {
 	Server.bindAsync(
 		`0.0.0.0:${port}`,
 		grpc.ServerCredentials.createInsecure(),
-		(err, port) => {
+		(err: Error | null, port: number) => {
 			if (err) console.error(err)
 
 			console.log(`Starting server on: 0.0.0.0:${port}`)
