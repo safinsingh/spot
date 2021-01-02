@@ -9,13 +9,10 @@ import {
 } from 'spot-grpc'
 import { promisify } from 'util'
 
-const { def, port } = loadProto('db')
-
 const host = process.env.NODE_ENV === 'production' ? 'db-svc' : 'localhost'
-const stub = new def['DbService'](
-	`${host}:${port}`,
-	grpc.credentials.createInsecure()
-)
+
+const { Proto: DbProto, port } = loadProto('db')
+const stub = new DbProto(`${host}:${port}`, grpc.credentials.createInsecure())
 
 const deadline = new Date()
 deadline.setSeconds(deadline.getSeconds() + 5)

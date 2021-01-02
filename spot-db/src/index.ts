@@ -8,10 +8,10 @@ import {
 	userPassPairExistsRequest
 } from './rpc'
 
-const { def, port } = loadProto('db')
+const { Proto, port } = loadProto('db')
 
 const Server = new grpc.Server()
-Server.addService(def['DbService'].service, {
+Server.addService(Proto.service, {
 	tableEntries: tableEntryRequest,
 	insertUserRecord: insertUserRecordRequest,
 	userPassPairExists: userPassPairExistsRequest

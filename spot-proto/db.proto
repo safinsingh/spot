@@ -1,5 +1,5 @@
 syntax = "proto3";
-package spot.db;
+package spot;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
@@ -11,9 +11,9 @@ service DbService {
 	// # of table entries
 	rpc TableEntries(google.protobuf.Empty) returns (google.protobuf.UInt32Value) {}
 
-	// Insert user/password
-	rpc InsertUserRecord(spot.auth.AuthRequest) returns (spot.auth.AuthResponse) {}
-
 	// User/password exists?
 	rpc UserPassPairExists(spot.auth.AuthRequest) returns (spot.common.FaillableBoolean) {}
+
+	// Insert user/password
+	rpc InsertUserRecord(spot.auth.AuthRequest) returns (spot.auth.AuthResponse) {}
 }

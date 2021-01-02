@@ -37,7 +37,7 @@ lint:
 ci:
 	just install-ci
 	just build-ci
-	just fmt-ci
+	# just fmt-ci
 	# just lint-ci
 
 install-ci:
@@ -46,7 +46,7 @@ install-ci:
 
 build-ci:
 	pnpm recursive run build
-	pnpm prune --production
+	pnpm prune --production 2>/dev/null
 	find . -type f -maxdepth 4 \
 		-name '*.ts' -delete
 

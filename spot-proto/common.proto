@@ -1,5 +1,5 @@
 syntax = "proto3";
-package spot.common;
+package spot;
 
 message FaillableBoolean {
 	bool status = 1;

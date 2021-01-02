@@ -1,5 +1,5 @@
 syntax = "proto3";
-package spot.auth;
+package spot;
 
 service AuthService {
 	// Authentication after initial setup

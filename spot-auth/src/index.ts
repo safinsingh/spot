@@ -3,10 +3,10 @@ import { loadProto } from 'spot-grpc'
 
 import { authenticateRequest } from './rpc'
 
-const { def, port } = loadProto('auth')
+const { Service, port } = loadProto('auth')
 
 const Server = new grpc.Server()
-Server.addService(def['AuthService'].service, {
+Server.addService(Service.service, {
 	authenticate: authenticateRequest
 })
 
