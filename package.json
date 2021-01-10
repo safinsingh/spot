@@ -3,7 +3,7 @@
 		"preinstall": "npx only-allow pnpm"
 	},
 	"devDependencies": {
-		"eslint": "7.16.0",
+		"eslint": "7.17.0",
 		"eslint-config-spot": "link:eslint-config-spot",
 		"husky": "4.3.6",
 		"prettier": "2.2.1"
