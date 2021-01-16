@@ -3,12 +3,12 @@ importers:
     devDependencies:
       eslint: 7.18.0
       eslint-config-spot: link:eslint-config-spot
-      husky: 4.3.7
+      husky: 4.3.8
       prettier: 2.2.1
     specifiers:
       eslint: 7.18.0
       eslint-config-spot: link:eslint-config-spot
-      husky: 4.3.7
+      husky: 4.3.8
       prettier: 2.2.1
   eslint-config-spot:
     dependencies:
@@ -5222,7 +5222,7 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-EkYm5BcKUGiduxzSt3Eppko+PiNWNEpa4ySk9vTC6wDsQJW9rHSa+UhGNJoRYp7bz6Ht1eaRIa6QaJqO5rCFbA==
-  /husky/4.3.7:
+  /husky/4.3.8:
     dependencies:
       chalk: 4.1.0
       ci-info: 2.0.0
@@ -5240,7 +5240,7 @@ packages:
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-0fQlcCDq/xypoyYSJvEuzbDPHFf8ZF9IXKJxlrnvxABTSzK1VPT2RKYQKrcgJ+YD39swgoB6sbzywUqFxUiqjw==
+      integrity: sha512-LCqqsB0PzJQ/AlCgfrfzRe3e3+NvmefAdKQhRYpxS4u6clblBoDdzzvHi8fmxKRzvMxPY/1WZWzomPZww0Anow==
   /iconv-lite/0.4.24:
     dependencies:
       safer-buffer: 2.1.2
